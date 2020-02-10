@@ -18,8 +18,5 @@ from django.urls import path
 from .views import homepage, contact
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',homepage),
-    path('contact', contact),
 
 ]
