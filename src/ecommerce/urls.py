@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from carts.views import cart_home
+
 from .views import homepage, contact, about, login_page, register_page
 # from products.views import (
 #         ProductListView,
@@ -38,6 +40,8 @@ urlpatterns = [
     path('contact/', contact, name = "contact"),
     path('about/', about, name="about"),
     path('products/', include("products.urls")),
+    path('cart/', cart_home, name='cart'),
+
 
     # path('featured/', ProductFeaturedListView.as_view()),
     # path('featured/<pk>/', ProductFeaturedDetailView.as_view()),
