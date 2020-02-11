@@ -48,7 +48,7 @@ def login_page(request):
             login(request, user)
             # Redirect to a success page.
             # context['form'] = LoginForm()
-            return redirect("/login")
+            return redirect("/")
         else:
             # Return an 'invalid login' error message.
             print("Error")
