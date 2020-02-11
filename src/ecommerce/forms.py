@@ -7,57 +7,56 @@ User = get_user_model()
 class ContactForm(forms.Form):
     fname = forms.CharField(
             widget = forms.TextInput(
-                    attrs = {
-                        "class": "form-control form-control-lg" ,
-                        "placeholder": "שם פרטי"
-
+                attrs = {
+                    "class": "form-control form-control-lg col-md-12 form-group" ,
+                    "placeholder": "שם פרטי"
                             }
                     ),
-                label=' '
+                label=''
             )
 
     lname = forms.CharField(
         widget = forms.TextInput(
             attrs = {
-                "class": "form-control form-control-lg" ,
+                "class": "form-control form-control-lg col-md-12 form-group" ,
                 "placeholder": "שם משפחה",
                     }
             ),
-        label=' '
+        label=''
     )
 
     eaddress = forms.EmailField(
             widget=forms.EmailInput(
                     attrs={
-                        "class": "form-control form-control-lg",
+                        "class": "form-control form-control-lg col-md-12 form-group",
                         "placeholder": "אימייל"
                         }
                     ),
-                label=' '
+                label=''
             )
     tel = forms.IntegerField(
             widget=forms.EmailInput(
                     attrs={
-                        "class": "form-control form-control-lg",
+                        "class": "form-control form-control-lg col-md-12 form-group",
                         "placeholder": "טלפון"
                         }
                     ),
-                label=' '
+                label=''
             )
     message = forms.CharField(
             widget=forms.Textarea(
                 attrs={
-                    'class': 'form-control form-control-lg',
+                    'class': 'form-control form-control-lg col-md-12 form-group',
                     "placeholder": "הודעה"
                     }
                 ),
-            label=' '
+            label=''
             )
 
     def clean_email(self):
         email = self.cleaned_data.get("eaddress")
         if not "@" in eaddress:
-            raise forms.ValidationError("Email has to be gmail.com")
+            raise forms.ValidationError("חובה להזין כתובת אימייל")
         return email
 
 class LoginForm(forms.Form):
