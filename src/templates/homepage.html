@@ -1,3 +1,10 @@
+{% url 'homepage' as home_url %}
+{% url 'contact' as contact_url %}
+{% url 'products:products' as product_list_url %}
+{% url 'login_page' as login_url %}
+{% url 'register_page' as register_url %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -84,7 +91,6 @@
 
 
 
-
       <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
 
       <div class="container">
@@ -95,7 +101,26 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
                 <li class="active"><a href="{% url 'homepage' %}" class="nav-link text-left">בית</a></li>
                 <li><a href="{% url 'about' %}" class="nav-link text-left">עלינו</a></li>
+                <li><a href="#" class="nav-link text-left">שותפים</a></li>
+                <li><a href="#" class="nav-link text-left">פעילויות</a></li>
+                <li><a href="#" class="nav-link text-left">בלוג</a></li>
+                <li><a href="{% url 'products' %}" class="nav-link text-left">חנות</a></li>
                 <li><a href="{% url 'contact' %}" class="nav-link text-left">צור קשר</a></li>
+
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+                  <a class="nav-link" href="{% url 'logout' %}">התנתק</a>
+                </li>
+                {% else %}
+                 <li class="nav-item {% if request.path == register_url %}active{% endif %}">
+                  <a class="nav-link" href="{{ register_url }}">הרשמה</a>
+                </li>
+                <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+                  <a class="nav-link" href="{{ login_url }}">התחבר</a>
+                </li>
+                {% endif %}
+
+
               </ul>
             </nav>
 

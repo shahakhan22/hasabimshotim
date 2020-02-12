@@ -20,7 +20,7 @@ from django.urls import path, include
 
 from carts.views import cart_home, cart_update
 
-from .views import homepage, contact, about, login_page, register_page
+from .views import homepage, contact, about, login_page, register_page, logout_request
 # from products.views import (
 #         ProductListView,
 #         product_list_view,
@@ -35,6 +35,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name = "homepage"),
     path('login/', login_page, name = "login_page"),
+    path("logout/", logout_request, name="logout"),
     path('register/', register_page, name = "register_page"),
     path('contact/', contact, name = "contact"),
     path('about/', about, name="about"),

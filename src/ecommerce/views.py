@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 
@@ -54,6 +54,12 @@ def login_page(request):
             print("Error")
 
     return render(request, "auth/login.html", context)
+
+def logout_request(request):
+    logout(request)
+    print(request, "Logged out successfully!")
+    return render(request, "homepage.html")
+
 
 User = get_user_model()
 
