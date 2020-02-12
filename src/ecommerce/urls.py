@@ -42,6 +42,8 @@ urlpatterns = [
     path('products/', include("products.urls")),
     # path('cart/', include("carts.urls", namespace='cart')),
     path('cart/', include('carts.urls')),
+    path('events/', include('events.urls')),
+
 
     # path('cart/', cart_home, name='cart'),
     # path('cart/update', cart_update, name='update'),
