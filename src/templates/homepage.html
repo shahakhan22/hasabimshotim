@@ -3,6 +3,7 @@
 {% url 'products:products' as product_list_url %}
 {% url 'login_page' as login_url %}
 {% url 'register_page' as register_url %}
+{% url 'cart:home' as cart_url %}
 
 
 <!DOCTYPE html>
@@ -35,6 +36,8 @@
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+
   <style>
 
   .rtl {
@@ -65,13 +68,13 @@
 
   <div class="site-wrap">
 
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
+    <div class="site-mobile-menu site-navbar-target rtl">
+      <div class="site-mobile-menu-header rtl">
+        <div class="site-mobile-menu-close mt-3 rtl">
           <span class="icon-close2 js-menu-toggle"></span>
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
+      <div class="site-mobile-menu-body rtl"></div>
     </div>
 
 
@@ -99,17 +102,22 @@
           <div class="mx-auto">
             <nav class="site-navigation position-relative text-left" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
-                <li class="active"><a href="{% url 'homepage' %}" class="nav-link text-left">בית</a></li>
-                <li><a href="{% url 'about' %}" class="nav-link text-left">עלינו</a></li>
-                <li><a href="#" class="nav-link text-left">שותפים</a></li>
-                <li><a href="#" class="nav-link text-left">פעילויות</a></li>
-                <li><a href="#" class="nav-link text-left">בלוג</a></li>
-                <li><a href="{% url 'products' %}" class="nav-link text-left">חנות</a></li>
-                <li><a href="{% url 'contact' %}" class="nav-link text-left">צור קשר</a></li>
+                <li class="active"><a href="{% url 'homepage' %}" class="nav-link">בית</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link">עלינו</a></li>
+                <li><a href="#" class="nav-link">שותפים</a></li>
+                <li><a href="#" class="nav-link">פעילויות</a></li>
+                <li><a href="#" class="nav-link">בלוג</a></li>
+                <li><a href="{% url 'products' %}" class="nav-link">חנות</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-link">צור קשר</a></li>
+
+                <li>
+                  |
+                </li>
 
                 {% if request.user.is_authenticated %}
-                 <li class="nav-item {% if request.path == login_url %}active{% endif %}">
-                  <a class="nav-link" href="{% url 'logout' %}">התנתק</a>
+                 <li class="nav-item">
+                   <a class="nav-link" href="{% url 'logout' %}">שלום {{user.username}}, התנתק </a>
+
                 </li>
                 {% else %}
                  <li class="nav-item {% if request.path == register_url %}active{% endif %}">
@@ -120,6 +128,9 @@
                 </li>
                 {% endif %}
 
+                <li>
+                 <a class="nav-link" href="{% url 'carts:home' %}"> עגלה <i class="fa fa-shopping-cart" aria-hidden="true"></i>    {{ request.session.cart_items }}
+               </li>
 
               </ul>
             </nav>
