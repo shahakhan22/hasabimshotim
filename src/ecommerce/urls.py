@@ -14,15 +14,13 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.contrib import admin
 from django.urls import path, include
 
 from carts.views import cart_home, cart_update
-
 from events.views import register_to_event
 from blogs.views import blog_list, blog_detail
-
+from partners.views import partners_list
 from .views import homepage, contact, about, login_page, register_page, logout_request
 # from products.views import (
 #         ProductListView,
@@ -47,6 +45,7 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('blog/', blog_list, name="blog_list"),
     path('blog/<int:blog_id>', blog_detail, name='blog_detail'),
+    path('partners/', partners_list, name="partners_list"),
 
 
     # path('cart/', cart_home, name='cart'),
