@@ -20,6 +20,8 @@ from django.urls import path, include
 
 from carts.views import cart_home, cart_update
 
+from events.views import register_to_event
+
 from .views import homepage, contact, about, login_page, register_page, logout_request
 # from products.views import (
 #         ProductListView,
@@ -42,6 +44,8 @@ urlpatterns = [
     path('products/', include("products.urls")),
     # path('cart/', include("carts.urls", namespace='cart')),
     path('cart/', include('carts.urls')),
+    # path('events/', register_to_event,'register_to_event'),
+
     path('events/', include('events.urls')),
 
 
