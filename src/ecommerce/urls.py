@@ -21,6 +21,7 @@ from django.urls import path, include
 from carts.views import cart_home, cart_update
 
 from events.views import register_to_event
+from blogs.views import blog_list, blog_detail
 
 from .views import homepage, contact, about, login_page, register_page, logout_request
 # from products.views import (
@@ -42,11 +43,10 @@ urlpatterns = [
     path('contact/', contact, name = "contact"),
     path('about/', about, name="about"),
     path('products/', include("products.urls")),
-    # path('cart/', include("carts.urls", namespace='cart')),
     path('cart/', include('carts.urls')),
-    # path('events/', register_to_event,'register_to_event'),
-
     path('events/', include('events.urls')),
+    path('blog/', blog_list, name="blog_list"),
+    path('blog/<int:blog_id>', blog_detail, name='blog_detail'),
 
 
     # path('cart/', cart_home, name='cart'),
