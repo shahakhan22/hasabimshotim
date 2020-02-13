@@ -87,61 +87,54 @@
               <img src="{% static 'images/hasabim_shotim_logo_v3_final_web_size.png' %}" alt="Image" class="img-fluid img-width">
             </a>
           </div>
-          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                class="icon-menu h3"></span></a>
+          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
         </div>
       </div>
 
 
 
       <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
-
       <div class="container">
-        <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center">
+            <div class="mx-auto">
+              <nav class="site-navigation position-relative text-left" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
+                  <li class="active"><a href="{% url 'homepage' %}" class="nav-link">בית</a></li>
+                  <li><a href="{% url 'about' %}" class="nav-link">עלינו</a></li>
+                  <li><a href="{% url 'partners_list' %}" class="nav-link">שותפים</a></li>
+                  <li><a href="{% url 'events:home' %}" class="nav-link">פעילויות</a></li>
+                  <li><a href="{% url 'blog_list' %}" class="nav-link">בלוג</a></li>
+                  <li><a href="{% url 'products' %}" class="nav-link">חנות</a></li>
+                  <li><a href="{% url 'contact' %}" class="nav-link">צור קשר</a></li>
 
-          <div class="mx-auto">
-            <nav class="site-navigation position-relative text-left" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
-                <li class="active"><a href="{% url 'homepage' %}" class="nav-link">בית</a></li>
-                <li><a href="{% url 'about' %}" class="nav-link">עלינו</a></li>
-                <li><a href="#" class="nav-link">שותפים</a></li>
-                <li><a href="#" class="nav-link">פעילויות</a></li>
-                <li><a href="#" class="nav-link">בלוג</a></li>
-                <li><a href="{% url 'products' %}" class="nav-link">חנות</a></li>
-                <li><a href="{% url 'contact' %}" class="nav-link">צור קשר</a></li>
+                  <li>
+                    |
+                  </li>
 
-                <li>
-                  |
-                </li>
+                  {% if request.user.is_authenticated %}
+                   <li class="nav-item">
+                     <a class="nav-link" href="{% url 'logout' %}">שלום {{user.username}}, התנתק </a>
+                  </li>
 
-                {% if request.user.is_authenticated %}
-                 <li class="nav-item">
-                   <a class="nav-link" href="{% url 'logout' %}">שלום {{user.username}}, התנתק </a>
+                  {% else %}
+                   <li class="nav-item">
+                    <a class="nav-link" href="{{ register_url }}">הרשמה</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ login_url }}">התחבר</a>
+                  </li>
 
-                </li>
-                {% else %}
-                 <li class="nav-item {% if request.path == register_url %}active{% endif %}">
-                  <a class="nav-link" href="{{ register_url }}">הרשמה</a>
-                </li>
-                <li class="nav-item {% if request.path == login_url %}active{% endif %}">
-                  <a class="nav-link" href="{{ login_url }}">התחבר</a>
-                </li>
-                {% endif %}
+                  {% endif %}
+                  <li>
+                   <a class="nav-link" href="{% url 'carts:home' %}"> עגלה <i class="fa fa-shopping-cart" aria-hidden="true"></i>    {{ request.session.cart_items }}</a>
+                 </li>
 
-                <li>
-                 <a class="nav-link" href="{% url 'carts:home' %}"> עגלה <i class="fa fa-shopping-cart" aria-hidden="true"></i>    {{ request.session.cart_items }}</a>
-               </li>
-
-              </ul>
-            </nav>
-
+                </ul>
+              </nav>
+            </div>
           </div>
-
         </div>
       </div>
-
-    </div>
-
     </div>
 
     <div class="owl-carousel hero-slide owl-style">
