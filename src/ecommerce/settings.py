@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'events',
     'blogs',
     'partners',
+    'contact',
 ]
 
 MIDDLEWARE = [

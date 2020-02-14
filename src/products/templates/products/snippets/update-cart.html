@@ -1,75 +1,10 @@
-{% url 'homepage' as home_url %}
-{% url 'contact' as contact_url %}
-{% url 'products:products' as product_list_url %}
-{% url 'login_page' as login_url %}
-{% url 'register_page' as register_url %}
-{% url 'cart:home' as cart_url %}
+{% extends 'base.html' %}
 
-
-<!DOCTYPE html>
-<html lang="en">
 {% load static %}
-<head>
-  <title>הסבים שותים</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-  <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Montserrat:400,700|Roboto&display=swap" rel="stylesheet">
+{% block content %}
 
-  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-
-  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
-
-  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-
-  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
-
-  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-  <link href="{% static 'css/jquery.mb.YTPlayer.min.css' %}" media="all" rel="stylesheet" type="text/css">
-
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
-
-  <style>
-
-  .rtl {
-          direction: rtl !important;
-          text-align: right;
-          font-family: "Montserrat";
-
-  }
-
-  .left {
-          direction: rtl !important;
-          text-align: left;
-          font-family: "Montserrat";
-
-  }
-
-  .font-montserrat{
-  font-family: "Montserrat";
-
-  }
-  .img-width {
-        max-width: 50% !important;
-
-  }
-
-  .nav-rtl {
-        direction: rtl !important; /* Add direction for menu */
-  }
-  </style>
-
-
-</head>
 
 <form method='POST' action='{% url "carts:update" %}' class="form left"> {% csrf_token %}
     <input type='hidden' name='product_id' value='{{ product.id }}' />
@@ -84,3 +19,5 @@
         {% endif %}
     {% endif %}
 </form>
+
+{% endblock %}

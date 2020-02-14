@@ -34,8 +34,8 @@ class ContactForm(forms.Form):
                     ),
                 label=''
             )
-    tel = forms.IntegerField(
-            widget=forms.EmailInput(
+    tel = forms.CharField(
+            widget=forms.TextInput(
                     attrs={
                         "class": "form-control form-control-lg col-md-12 form-group",
                         "placeholder": "טלפון"

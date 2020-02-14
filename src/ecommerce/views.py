@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 
 from .forms import ContactForm, LoginForm, RegisterForm
+from contact.models import Contact
 
 def about(request):
     context = {
@@ -16,18 +17,31 @@ def homepage(request):
 
 def contact(request):
     contact_form = ContactForm()
-    context = {
-        "title": "Contact",
-        "content": "",
-        "form": contact_form
-    }
+    # context = {
+    #     "title": "Contact",
+    #     "content": "",
+    #     "form": contact_form,
+    #     "note": ""
+    # }
+
+    note = "אתם מוזמנים לפנות אלינו בכל שאלה. אנחנו מבטיחים לחזור אליכם בהקדם"
     if request.method == "POST":
-        print(request.POST.get('fname'))
-        print(request.POST.get('lname'))
-        print(request.POST.get('eaddress'))
-        print(request.POST.get('tel'))
-        print(request.POST.get('message'))
-    return render(request, "contact/view.html", context)
+                fname = request.POST["fname"]
+                lname = request.POST["lname"]
+                eaddress = request.POST["eaddress"]
+                tel = request.POST["tel"]
+                message = request.POST["message"]
+
+                print(request.POST.get('fname'))
+                print(request.POST.get('lname'))
+                print(request.POST.get('eaddress'))
+                print(request.POST.get('tel'))
+                print(request.POST.get('message'))
+
+                contact_reg_info = Contact(fname=fname, lname=lname, eaddress=eaddress, tel = tel, message=message)
+                contact_reg_info.save()
+                note = "פנייתך התקבלה, אנו ניצור איתך קשר בהקדם"
+    return render(request, "contact/view.html", {'form':contact_form ,'note':note})
 
 def login_page(request):
     form = LoginForm(request.POST or None)
