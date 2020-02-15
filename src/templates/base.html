@@ -1,3 +1,15 @@
+{% url 'homepage' as home_url %}
+{% url 'about' as about_url %}
+{% url 'blog_list' as blog_url %}
+{% url 'events:home' as events_url %}
+{% url 'partners_list' as partners_url %}
+{% url 'products' as products_list_url %}
+{% url 'contact' as contact_url %}
+{% url 'login_page' as login_url %}
+{% url 'register_page' as register_url %}
+{% url 'cart:home' as cart_url %}
+
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -30,6 +42,11 @@
           text-align: right;
           font-family: "Montserrat";
     }
+    .rtl-center {
+            direction: rtl !important;
+            text-align: center;
+            font-family: "Montserrat";
+      }
   .font-montserrat{
           font-family: "Montserrat";
     }
@@ -78,32 +95,46 @@
             <div class="mx-auto">
               <nav class="site-navigation position-relative text-left" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
-                  <li class="active"><a href="{% url 'homepage' %}" class="nav-link">בית</a></li>
-                  <li><a href="{% url 'about' %}" class="nav-link">עלינו</a></li>
-                  <li><a href="{% url 'partners_list' %}" class="nav-link">שותפים</a></li>
-                  <li><a href="{% url 'events:home' %}" class="nav-link">פעילויות</a></li>
-                  <li><a href="{% url 'blog_list' %}" class="nav-link">בלוג</a></li>
-                  <li><a href="{% url 'products' %}" class="nav-link">חנות</a></li>
-                  <li><a href="{% url 'contact' %}" class="nav-link">צור קשר</a></li>
+                  <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+                      <a href="{% url 'homepage' %}" class="nav-link">בית</a>
+                  </li>
+                  <li class="nav-item {% if request.path == about_url %}active{% endif %}">
+                      <a href="{% url 'about' %}" class="nav-link">עלינו</a>
+                  </li>
+                  <li class="nav-item {% if request.path == partners_url %}active{% endif %}">
+                      <a href="{% url 'partners_list' %}" class="nav-link">שותפים</a>
+                  </li>
+                  <li class="nav-item {% if request.path == events_url %}active{% endif %}">
+                      <a href="{% url 'events:home' %}" class="nav-link">פעילויות</a>
+                  </li>
+                  <li class="nav-item {% if request.path == blog_url %}active{% endif %}">
+                      <a href="{% url 'blog_list' %}" class="nav-link">בלוג</a>
+                  </li>
+                  <li class="nav-item {% if request.path == products_list_url %}active{% endif %}">
+                      <a href="{% url 'products' %}" class="nav-link">חנות</a>
+                  </li>
+                  <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
+                      <a href="{% url 'contact' %}" class="nav-link">צור קשר</a>
+                  </li>
 
                   <li>
                     |
                   </li>
 
                   {% if request.user.is_authenticated %}
-                   <li class="nav-item">
+                   <li class="nav-item {% if request.path == cart_url %}active{% endif %}">
                      <a class="nav-link" href="{% url 'logout' %}">שלום {{user.username}}, התנתק </a>
-                  </li>
 
+                  </li>
                   {% else %}
-                   <li class="nav-item">
+                   <li class="nav-item {% if request.path == register_url %}active{% endif %}">
                     <a class="nav-link" href="{{ register_url }}">הרשמה</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.path == login_url %}active{% endif %}">
                     <a class="nav-link" href="{{ login_url }}">התחבר</a>
                   </li>
-
                   {% endif %}
+
                   <li>
                    <a class="nav-link" href="{% url 'carts:home' %}"> עגלה <i class="fa fa-shopping-cart" aria-hidden="true"></i>    {{ request.session.cart_items }}</a>
                  </li>

@@ -1,23 +1,13 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-
-{% block content %}
-
-
-<form method='POST' action='{% url "carts:update" %}' class="form left"> {% csrf_token %}
+<form method='POST' action='{% url "carts:update" %}' class="form"> {% csrf_token %}
     <input type='hidden' name='product_id' value='{{ product.id }}' />
 
     {% if in_cart %}
-        <button type='submit' class='btn btn-sm' style="padding:0px;cursor: pointer;">להסיר?</button>
+        <button type='submit' class='btn btn-link btn-sm' style="padding:0px;cursor: pointer;">להסיר?</button>
     {% else %}
         {% if product in cart.products.all %}
-            המוצר נמצא בעגלה. <button type='submit' class='btn btn-link'>להסיר?</button>
+            In cart <button type='submit' class='btn btn-link'>להסיר?</button>
         {% else %}
             <button type='submit'  class='buy-now btn btn-sm height-auto px-4 py-3 btn-primary'>הוסף לעגלה</button>
         {% endif %}
     {% endif %}
 </form>
-
-{% endblock %}

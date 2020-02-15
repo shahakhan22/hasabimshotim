@@ -1,6 +1,10 @@
 {% url 'homepage' as home_url %}
+{% url 'about' as about_url %}
+{% url 'blog' as blog_url %}
+{% url 'events' as events_url %}
+{% url 'partners' as partners_url %}
+{% url 'products' as products_list_url %}
 {% url 'contact' as contact_url %}
-{% url 'products:products' as product_list_url %}
 {% url 'login_page' as login_url %}
 {% url 'register_page' as register_url %}
 {% url 'cart:home' as cart_url %}
@@ -87,8 +91,9 @@
               <img src="{% static 'images/hasabim_shotim_logo_v3_final_web_size.png' %}" alt="Image" class="img-fluid img-width">
             </a>
           </div>
-          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                class="icon-menu h3"></span></a>
+          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+            <span class="icon-menu h3"></span>
+          </a>
         </div>
       </div>
 
@@ -102,20 +107,35 @@
           <div class="mx-auto">
             <nav class="site-navigation position-relative text-left" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none nav-rtl" style ="padding-right: 0px">
-                <li class="active"><a href="{% url 'homepage' %}" class="nav-link">בית</a></li>
-                <li><a href="{% url 'about' %}" class="nav-link">עלינו</a></li>
-                <li><a href="#" class="nav-link">שותפים</a></li>
-                <li><a href="#" class="nav-link">פעילויות</a></li>
-                <li><a href="#" class="nav-link">בלוג</a></li>
-                <li><a href="{% url 'products' %}" class="nav-link">חנות</a></li>
-                <li><a href="{% url 'contact' %}" class="nav-link">צור קשר</a></li>
+
+                <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+                    <a href="{% url 'homepage' %}" class="nav-link">בית</a>
+                </li>
+                <li class="nav-item {% if request.path == {% url 'about' %} %}active{% endif %}">
+                    <a href="{% url 'about' %}" class="nav-link">עלינו</a>
+                </li>
+                <li class="nav-item {% if request.path == partners_url %}active{% endif %}">
+                    <a href="{% url 'partners' %}" class="nav-link">שותפים</a>
+                </li>
+                <li class="nav-item {% if request.path == events_url %}active{% endif %}">
+                    <a href="{% url 'events' %}" class="nav-link">פעילויות</a>
+                </li>
+                <li class="nav-item {% if request.path == blog_url %}active{% endif %}">
+                    <a href="{% url 'blog' %}" class="nav-link">בלוג</a>
+                </li>
+                <li class="nav-item {% if request.path == products_list_url %}active{% endif %}">
+                    <a href="{% url 'products' %}" class="nav-link">חנות</a>
+                </li>
+                <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
+                    <a href="{% url 'contact' %}" class="nav-link">צור קשר</a>
+                </li>
 
                 <li>
                   |
                 </li>
 
                 {% if request.user.is_authenticated %}
-                 <li class="nav-item">
+                 <li class="nav-item {% if request.path == cart_url %}active{% endif %}">
                    <a class="nav-link" href="{% url 'logout' %}">שלום {{user.username}}, התנתק </a>
 
                 </li>
@@ -134,12 +154,12 @@
 
               </ul>
             </nav>
-
           </div>
-
         </div>
       </div>
-
     </div>
+  </div>
 
-    </div>
+
+</body>
+</html>
