@@ -3,9 +3,12 @@
 
 {% block content %}
 
+
 {% if not billing_profile %}
+
 <div class='row text-center'>
 <div class='col-12 col-md-6'>
+  <!-- {{ object.order_id }} -- {{ object.cart }} -->
     <p class='lead rtl-center'>התחבר</p>
     {% include 'accounts/snippets/form.html' with form=login_form next_url=request.build_absolute_uri %}
 </div>
@@ -19,13 +22,35 @@
 </div>
 
 {% else %}
-    <h1>Checkout</h1>
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 single-content">
+            <h1 class ="rtl">סיכום הזמנה</h1>
+            <!-- {{ object.order_id }} -- {{ object.cart }} -->
 
-    <p>Cart Total: {{ object.cart.total }}</p>
-    <p>Shipping Total: {{ object.shipping_total }}</p>
-    <p>Order Total: {{ object.total }}</p>
+            <table class="table col-lg-12 single-content rtl">
+              <tbody>
+                <tr>
+                  <td> סה"כ סל הקניות: {{ object.cart.total }} ש"ח </td>
+                </tr>
+
+                  <tr>
+                    <td> דמי משלוח: {{ object.shipping_total }} ש"ח </td>
+                  </tr>
+
+                  <tr>
+                    <td> סה"כ לתשלום: {{ object.total }} ש"ח </td>
+                  </tr>
+
+              </tbody>
+            </table>
+
+            </div>
+          </div>
+        </div>
+    </div>
 {% endif %}
-
 
 
 {% endblock %}
