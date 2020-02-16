@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import login_page, register_page
+from accounts.views import login_page, register_page, guest_register_view
 from carts.views import cart_home, cart_update
 from events.views import register_to_event
 from blogs.views import blog_list, blog_detail
@@ -38,6 +38,7 @@ urlpatterns = [
     path('', homepage, name = "homepage"),
     path('login/', login_page, name = "login_page"),
     path("logout/", logout_request, name="logout"),
+    path('register/guest', guest_register_view, name = "guest_register"),
     path('register/', register_page, name = "register_page"),
     path('contact/', contact, name = "contact"),
     path('about/', about, name="about"),

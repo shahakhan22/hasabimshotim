@@ -3,6 +3,17 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class GuestForm(forms.Form):
+        email = forms.EmailField(
+                widget=forms.EmailInput(
+                        attrs={
+                            "class": "form-control form-control-lg col-md-12 form-group",
+                            # "placeholder": "כתובת מייל"
+                            }
+                        ),
+                    label='כתובת מייל'
+                )
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(
