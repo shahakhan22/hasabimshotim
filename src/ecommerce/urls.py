@@ -17,11 +17,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from accounts.views import login_page, register_page
 from carts.views import cart_home, cart_update
 from events.views import register_to_event
 from blogs.views import blog_list, blog_detail
 from partners.views import partners_list
-from .views import homepage, contact, about, login_page, register_page, logout_request
+from .views import homepage, contact, about, logout_request
 # from products.views import (
 #         ProductListView,
 #         product_list_view,
