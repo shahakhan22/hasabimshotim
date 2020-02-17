@@ -18,20 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from accounts.views import login_page, register_page, guest_register_view
-from carts.views import cart_home, cart_update
+from carts.views import cart_home, cart_update, checkout_done_view
 from events.views import register_to_event
 from blogs.views import blog_list, blog_detail
 from partners.views import partners_list
 from .views import homepage, contact, about, logout_request
-# from products.views import (
-#         ProductListView,
-#         product_list_view,
-#         ProductDetailView,
-#         ProductDetailSlugView,
-#         product_detail_view,
-#         ProductFeaturedListView,
-#         ProductFeaturedDetailView
-#         )
+from addresses.views import checkout_address_create_view, checkout_address_reuse_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +40,10 @@ urlpatterns = [
     path('blog/', blog_list, name="blog_list"),
     path('blog/<int:blog_id>', blog_detail, name='blog_detail'),
     path('partners/', partners_list, name="partners_list"),
+    path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
+    path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
+    path('checkout/success/', checkout_done_view, name='success'),
+
 
 
     # path('cart/', cart_home, name='cart'),
