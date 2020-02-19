@@ -21,7 +21,7 @@
 
         <div class="row">
           {% for obj in object_list %}
-
+{% if obj.active == True %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4">
               <a href="{{ obj.get_absolute_url }}" class="thumbnail d-block mb-4"><img src="{{obj.image.url}}"  alt="Image" class="img-fluid" style="height: 350px"></a>
@@ -41,6 +41,7 @@
               </div>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
         </div>
 
