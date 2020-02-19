@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Partner(models.Model):
+class Vendor(models.Model):
     business_name            = models.CharField(max_length=120, null=True, blank=True, unique=True)
     business_address         = models.CharField(max_length=300, null=True, blank=True)
     business_phone           = models.CharField(max_length=120, null=True, blank=True)

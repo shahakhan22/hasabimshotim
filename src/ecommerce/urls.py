@@ -24,6 +24,7 @@ from blogs.views import blog_list, blog_detail
 from partners.views import partners_list
 from .views import homepage, contact, about, logout_request
 from addresses.views import checkout_address_create_view, checkout_address_reuse_view
+from vendors.views import vendors_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,7 +40,7 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('blog/', blog_list, name="blog_list"),
     path('blog/<int:blog_id>', blog_detail, name='blog_detail'),
-    path('partners/', partners_list, name="partners_list"),
+    path('vendors/', vendors_list, name="vendors_list"),
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
     path('checkout/success/', checkout_done_view, name='success'),
