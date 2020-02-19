@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'carts',
     'events',
     'blogs',
-    'partners',
+    # 'partners',
     'contact',
     'orders',
     'accounts',
