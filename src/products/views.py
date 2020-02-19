@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from carts.models import Cart
 from .models import Product
 
+from .filters import ProductFilter
 
 class ProductFeaturedListView(ListView):
     template_name = "products/list.html"
@@ -38,12 +39,18 @@ class ProductListView(ListView):
         return Product.objects.all()
 
 
-def product_list_view(request):
-    queryset = Product.objects.all()
-    context = {
-        'object_list': queryset
-    }
-    return render(request, "products/list.html", context)
+
+    def product_list_view(request):
+        queryset = Product.objects.all()
+        context = {
+            'object_list': queryset
+        }
+        return render(request, "products/list.html", context)
+
+    def get_context_data(self,  **kwargs):
+        context = super().get_context_data( **kwargs)
+        context['filter'] = ProductFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
