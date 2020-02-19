@@ -2,8 +2,8 @@ import random
 import os
 from django.db import models
 from django.db.models.signals import pre_save, post_save
-
-
+from vendors.models import Vendor
+import datetime
 from ecommerce.utils import unique_slug_generator
 
 def get_filename_ext(filepath):
@@ -46,12 +46,16 @@ class ProductManager(models.Manager):
             return qs.first()
         return None
 
-
-
+TYPE_CHOICES = (
+    ('wine', 'Wine'),
+    ('beer', 'Beer'),
+    ('alcohol', 'Alcohol'),
+)
 class Product(models.Model):
     title           = models.CharField(max_length=120)
-    # winery           = models.CharField(max_length=120)
-
+    vendor          = models.ForeignKey(Vendor, max_length=200, blank=True,null = True, on_delete=models.CASCADE)
+    year            = models.IntegerField(default='2020',blank=True)
+    type            = models.CharField(max_length=200, choices=TYPE_CHOICES,blank=True)
     slug            = models.SlugField(blank=True, unique=True)
     description     = models.TextField()
     price           = models.DecimalField(decimal_places=2, max_digits=20, default=39.99)

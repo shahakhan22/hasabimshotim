@@ -10,3 +10,6 @@ class Vendor(models.Model):
     logo                     = models.ImageField(upload_to='images/', null=True, blank=True)
     about                    = models.TextField(max_length=1000, null=True, blank=True)
     web_site                 = models.URLField(max_length=300)
+
+    def __str__(self):
+        return self.business_name
