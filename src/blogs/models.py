@@ -12,4 +12,4 @@ class Blog(models.Model):
         date = models.DateTimeField(auto_now_add=True)
 
         def snippet(self):
-            return '... ' + self.body[:50]
+            return self.body[:50] + '... '

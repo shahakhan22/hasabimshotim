@@ -55,6 +55,8 @@ class Product(models.Model):
     title           = models.CharField(max_length=120)
     vendor          = models.ForeignKey(Vendor, max_length=200, blank=True,null = True, on_delete=models.CASCADE)
     year            = models.IntegerField(default='2020',blank=True)
+    grapes_type     = models.CharField(max_length=200, null=True, blank=True)
+    alcohol_pre     = models.CharField(max_length=6, null=True, blank=True)
     type            = models.CharField(max_length=200, choices=TYPE_CHOICES,blank=True)
     slug            = models.SlugField(blank=True, unique=True)
     description     = models.TextField()
