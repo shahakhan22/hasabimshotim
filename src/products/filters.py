@@ -3,7 +3,7 @@ from .models import Product
 
 class ProductFilter(django_filters.FilterSet):
     # name = django_filters.CharFilter(lookup_expr='iexact')
-    title = django_filters.CharFilter('title','icontains',label='שם היין')
+    # title = django_filters.CharFilter('title','icontains',label='שם היין')
 
 
     CHOICES = (
@@ -11,7 +11,14 @@ class ProductFilter(django_filters.FilterSet):
         ('descending', 'מהגבוה לנמוך'),
 
     )
-    ordering_price = django_filters.ChoiceFilter(label="סדר לפי", choices=CHOICES, method='order_by_price')
+
+    TYPE_CHOICES = (
+        ('wine', 'יין'),
+        ('beer', 'בירה'),
+        ('alcohol', 'אלכוהול'),
+    )
+    ordering_price = django_filters.ChoiceFilter(label=" סדר לפי מחיר ", choices=CHOICES, method='order_by_price')
+    type = django_filters.ChoiceFilter(label="סוג מוצר", choices=TYPE_CHOICES)
 
     class Meta:
         model = Product
